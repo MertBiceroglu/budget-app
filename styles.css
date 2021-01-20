@@ -10,38 +10,24 @@ body{
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    height: 1100px;
+    /* height: 1100px; */
+    position: relative;
+    height: auto;
+    min-height: 100% !important;
+
 }
 
 h1{
     font-weight: 800;
     font-size: 3.5em;
-    margin-bottom: 20px;
+    margin-bottom: -30px;
     color:#abcdef;
     text-shadow: 3px 3px #000;
 }
-.style-seven {
-    overflow: visible; /* For IE */
-    height: 30px;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px 0 0 0;
-    border-radius: 20px;
-    width: 80%;
-}
-.style-seven:before { /* Not really supposed to work, but does */
-    display: block;
-    content: "";
-    height: 30px;
-    margin-top: -31px;
-    border-style: solid;
-    border-color: black;
-    border-width: 0 0 1px 0;
-    border-radius: 20px;
-}
+
 .wrapper-Main{
     width: 90%;
-    height: 1000px;
+    height: 1080px;
     background-color:#fff;
     box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.75);
     margin-top: 50px;
@@ -114,11 +100,14 @@ select option{
 .incomes, .expenses{
     /* border: 1px solid black; */
     width: 35%;
-    height: 100%;
+    height: 1100px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: scroll;
+    overflow: auto;
+    
+    /* display: scroll !important; */
+    
 }
 .incomes h2, .expenses h2{
     margin-top: 20px;
@@ -126,17 +115,27 @@ select option{
     text-shadow: 1px 1px #000;
     font-size: 2em;
 }
+
+.income-Container{
+    width: 100%;
+    overflow: scroll;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .show-Data{
     display: flex;
     flex-direction: column;
     /* border: 1px solid salmon; */
     flex-grow: 1;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    height: 800px;
+    margin-top: 50px;
 }
-/* img{
-    margin-top: 20px;
-} */
+
 .data{
     background: black;
     color: white;
@@ -144,7 +143,7 @@ select option{
     font-family: "Lato", sans-serif;
     font-size: 0.8em;
     width: 85%;
-    height: 15%;
+    height: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -183,6 +182,7 @@ select option{
     box-shadow: 0px 6px 6px #616c6f;
     background: linear-gradient( 90deg, rgba(2, 108, 47, 1) 8%, rgba(46, 204, 114, 1) 62% );
     color: white;
+    margin-bottom: 10px;
 }
 .amount{
     padding-right: ;
@@ -200,10 +200,9 @@ select option{
     justify-content: space-between;
     padding: 4%;
     align-items: center;
+    margin-bottom: 10px;
     border-radius: 6px;
     box-shadow: 0px 6px 6px #616c6f;
     background: linear-gradient( 90deg, rgba(186, 47, 22, 1) 32%, rgba(228, 66, 54, 1) 53% );    color: white;
 }
-.Expense-Box:first-child{
-    margin-top: 50px;
-}
+
