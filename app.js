@@ -8,28 +8,33 @@ incomeMiddle = document.querySelector('.allIncome');
 expenseMiddle = document.querySelector('.allExpense');
 moneyLeftMiddle = document.querySelector('.moneyLeft');
 mainWrapper = document.querySelector('.wrapper-Main');
+saveButton = document.querySelectorAll('.save')[0];
+resetButton = document.querySelectorAll('.save')[1];
 
-
-
-
-totalIncome = 0;
-totalExpense = 0;
-
+onPageLoad();
 eventListeners();
 
 function eventListeners(){
     addButton.addEventListener('click',addToUI);
     mainWrapper.addEventListener('click',deleteFromUI);
+    saveButton.addEventListener('click',saveEverything);
+    resetButton.addEventListener('click',resetEverything);
+    
 }
 
 function addToUI(){
-    if(determineOption(selection)==='+'){
+    if(determineOption(selection)==='+' && limitValue()){
         addIncomeToUI(valueInput,descriptionInput,listOfIncomes);
         ResetUI(true);
+
     }
-    else{
+    else if(determineOption(selection)==='-' && limitValue()){
         addExpenseToUI(valueInput,descriptionInput,listOfExpenses);
         ResetUI(false);
+
+    }
+    else{
+        alert('Yanlış ve ya boş değer girdiniz.');
     }
 }
 function addIncomeToUI(value,description,listOfIncomes){
@@ -102,4 +107,77 @@ function ResetUI(check){
     moneyLeftMiddle.textContent = totalIncome-totalExpense + ' ₺';
     valueInput.value = '';
     descriptionInput.value ='';
+}
+
+function limitValue(){
+    if (valueInput.value === ''){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+function loadEverythingToUI(){
+
+    incomeList = JSON.parse(localStorage.getItem('incomeList'));
+    expenseList = JSON.parse(localStorage.getItem('expenseList'));
+
+    if(incomeList != null)
+        for(i = 0;i<incomeList.length;i++){
+            listOfIncomes.innerHTML += incomeList[i];
+        }
+    if(expenseList != null)    
+        for(i = 0;i<expenseList.length;i++){
+            listOfExpenses.innerHTML += expenseList[i];
+        }
+
+    totalExpense = parseInt(localStorage.getItem('expenseTotal'));
+    totalIncome = parseInt(localStorage.getItem('incomeTotal'));
+
+    ResetUIMain();
+
+}
+function saveEverything(){
+
+    incomeList =[];
+    expenseList = [];
+
+    for(i=0;i<document.querySelectorAll('.Income-Box').length;i++){
+        incomeList.push(document.querySelectorAll('.Income-Box')[i].outerHTML);
+    }
+    for(i=0;i<document.querySelectorAll('.Expense-Box').length;i++){
+        expenseList.push(document.querySelectorAll('.Expense-Box')[i].outerHTML);
+    }
+
+
+
+    localStorage.setItem('expenseTotal',totalExpense);
+    localStorage.setItem('incomeTotal',totalIncome);
+    localStorage.setItem('incomeList',JSON.stringify(incomeList));
+    localStorage.setItem('expenseList',JSON.stringify(expenseList));
+
+}
+function resetEverything(){
+    localStorage.removeItem('expenseList');
+    localStorage.removeItem('incomeList');
+    localStorage.removeItem('expenseTotal');
+    localStorage.removeItem('incomeTotal');
+    totalIncome = 0;
+    totalExpense = 0;
+    ResetUIMain();
+    location.reload();
+}
+
+function onPageLoad(){
+   
+   if(localStorage.getItem('incomeTotal') === null){
+    totalIncome = 0;
+    totalExpense = 0;
+    ResetUIMain();
+    }
+   else{
+    loadEverythingToUI();
+   }
+    
+
 }

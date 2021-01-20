@@ -226,3 +226,12 @@ select option {
   );
   color: white;
 }
+.save {
+  background-color: #abcdef;
+  box-shadow: 0px 2px 7px -1px #abcdef;
+  width: 100px;
+  height: 40px;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+}
