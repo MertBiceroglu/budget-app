@@ -1,15 +1,20 @@
-selection = document.querySelector('.select-box');
-addButton = document.querySelector('.add-box');
-valueInput = document.querySelector('.amount-box');
-descriptionInput = document.querySelector('.input-box');
-listOfIncomes = document.querySelectorAll('.income-Container')[0];
-listOfExpenses = document.querySelectorAll('.income-Container')[1];
-incomeMiddle = document.querySelector('.allIncome');
-expenseMiddle = document.querySelector('.allExpense');
-moneyLeftMiddle = document.querySelector('.moneyLeft');
-mainWrapper = document.querySelector('.wrapper-Main');
-saveButton = document.querySelectorAll('.save')[0];
-resetButton = document.querySelectorAll('.save')[1];
+const selection = document.querySelector('.select-box');
+const addButton = document.querySelector('.add-box');
+const valueInput = document.querySelector('.amount-box');
+const descriptionInput = document.querySelector('.input-box');
+const listOfIncomes = document.querySelectorAll('.income-Container')[0];
+const listOfExpenses = document.querySelectorAll('.income-Container')[1];
+const incomeMiddle = document.querySelector('.allIncome');
+const expenseMiddle = document.querySelector('.allExpense');
+const moneyLeftMiddle = document.querySelector('.moneyLeft');
+const mainWrapper = document.querySelector('.wrapper-Main');
+const saveButton = document.querySelectorAll('.save')[0];
+const resetButton = document.querySelectorAll('.save')[1];
+const date = document.querySelectorAll('h4')[0];
+
+let currentDate = new Date();
+const months = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+
 
 onPageLoad();
 eventListeners();
@@ -178,6 +183,8 @@ function onPageLoad(){
    else{
     loadEverythingToUI();
    }
+
+   date.textContent = months[currentDate.getMonth()] + ', ' +currentDate.getFullYear()
     
 
 }
